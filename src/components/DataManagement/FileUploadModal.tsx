@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { X, Upload, FileSpreadsheet, Edit3, Save, Trash2, Plus } from 'lucide-react';
-import * as XLSX from 'xlsx';
+import * as ExcelJS from 'exceljs';
 import { EquityTrade, FXTrade } from '../../types/trade';
 import { parseEquityTradesCSV, parseFXTradesCSV, parseCSV, detectTradeType } from '../../utils/csvParser';
 
@@ -48,7 +48,7 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({
   }, []);
 
   const handleFiles = (files: FileList) => {
-    Array.from(files).forEach(file => {
+    Array.from(files).forEach((file) => {
       const isExcel = file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || 
                      file.type === 'application/vnd.ms-excel' ||
                      file.name.endsWith('.xlsx') || 
@@ -60,17 +60,37 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({
       if (isExcel || isCSV) {
         
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = async (e: ProgressEvent<FileReader>) => {
           try {
             let jsonData: Record<string, unknown>[] = [];
             
             if (isExcel) {
               // Handle Excel files
               const data = new Uint8Array(e.target?.result as ArrayBuffer);
-              const workbook = XLSX.read(data, { type: 'array' });
-              const sheetName = workbook.SheetNames[0];
-              const worksheet = workbook.Sheets[sheetName];
-              jsonData = XLSX.utils.sheet_to_json(worksheet);
+              const workbook = new ExcelJS.Workbook();
+              await workbook.xlsx.load(data);
+              const worksheet = workbook.getWorksheet(1);
+              if (worksheet) {
+                const headers: string[] = [];
+                const rows: Record<string, unknown>[] = [];
+                
+                worksheet.eachRow((row, rowNumber) => {
+                  if (rowNumber === 1) {
+                    // First row contains headers
+                    row.eachCell((cell, colNumber) => {
+                      headers[colNumber - 1] = cell.value?.toString() || `Column${colNumber}`;
+                    });
+                  } else {
+                    // Data rows
+                    const rowData: Record<string, unknown> = {};
+                    row.eachCell((cell, colNumber) => {
+                      rowData[headers[colNumber - 1]] = cell.value;
+                    });
+                    rows.push(rowData);
+                  }
+                });
+                jsonData = rows;
+              }
             } else if (isCSV) {
               // Handle CSV files
               const csvText = e.target?.result as string;
@@ -153,8 +173,8 @@ const FileUploadModal: React.FC<FileUploadModalProps> = ({
       const file = uploadedFiles.find(f => f.id === editingFile);
       if (file && file.data.length > 0) {
         const template = { ...file.data[0] };
-        Object.keys(template).forEach(key => {
-          template[key] = '';
+        Object.keys(template).forEach((key) => {
+          (template as Record<string, unknown>)[key] = '';
         });
         setEditData(prev => [...prev, template]);
       }
