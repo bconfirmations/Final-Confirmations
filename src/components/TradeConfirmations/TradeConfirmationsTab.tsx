@@ -4,6 +4,7 @@ import TradeFilters from "./TradeFilters";
 import TradeCard from "./TradeCard";
 import { useFirebaseTradeData } from "../../hooks/useFirebaseTradeData";
 import { RefreshCw, AlertCircle } from "lucide-react";
+import FirebaseStatus from "../Layout/FirebaseStatus";
 
 interface TradeConfirmationsTabProps {
   equityTrades?: EquityTrade[];
@@ -267,12 +268,20 @@ const TradeConfirmationsTab: React.FC<TradeConfirmationsTabProps> = ({
 
       {filteredTrades.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">
-            No trades found matching your criteria.
-          </p>
-          <p className="text-gray-400 text-sm mt-2">
-            Try adjusting your filters or search terms.
-          </p>
+          {useFirebase && allTrades.length === 0 ? (
+            <div className="max-w-2xl mx-auto">
+              <FirebaseStatus showDetails={true} />
+            </div>
+          ) : (
+            <>
+              <p className="text-gray-500 text-lg">
+                No trades found matching your criteria.
+              </p>
+              <p className="text-gray-400 text-sm mt-2">
+                Try adjusting your filters or search terms.
+              </p>
+            </>
+          )}
         </div>
       )}
     </div>

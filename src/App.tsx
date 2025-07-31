@@ -3,13 +3,13 @@ import Header from './components/Layout/Header';
 import TabNavigation from './components/Layout/TabNavigation';
 import TradeConfirmationsTab from './components/TradeConfirmations/TradeConfirmationsTab';
 import WorkflowManagementTab from './components/WorkflowManagement/WorkflowManagementTab';
-import { useTradeData } from './hooks/useTradeData';
+import { useFirebaseTradeData } from './hooks/useFirebaseTradeData';
 import { Loader2, AlertCircle } from 'lucide-react';
 
 
 function App() {
   const [activeTab, setActiveTab] = useState<'confirmations' | 'workflow'>('confirmations');
-  const { equityTrades, fxTrades, loading, error } = useTradeData();
+  const { equityTrades, fxTrades, loading, error } = useFirebaseTradeData();
 
   if (loading) {
     return (
@@ -18,7 +18,7 @@ function App() {
         <div className="flex items-center justify-center h-96">
           <div className="flex items-center space-x-3">
             <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-            <span className="text-lg text-gray-600">Loading trade data...</span>
+            <span className="text-lg text-gray-600">Loading trade data from Firebase...</span>
           </div>
         </div>
       </div>
