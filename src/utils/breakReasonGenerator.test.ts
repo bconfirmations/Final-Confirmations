@@ -52,7 +52,7 @@ export const testBreakReasonGenerator = () => {
   const equityBreakReason = generateBreakReason(sampleEquityTrade);
   console.log('Generated Break Reason:', equityBreakReason);
   console.log('Field:', equityBreakReason.field);
-  console.log('Barclays Value:', equityBreakReason.barclaysValue);
+  console.log('TradeBank Value:', equityBreakReason.bankValue);
   console.log('Client Value:', equityBreakReason.clientValue);
   
   // Test with FX Trade
@@ -60,14 +60,14 @@ export const testBreakReasonGenerator = () => {
   const fxBreakReason = generateBreakReason(sampleFXTrade);
   console.log('Generated Break Reason:', fxBreakReason);
   console.log('Field:', fxBreakReason.field);
-  console.log('Barclays Value:', fxBreakReason.barclaysValue);
+  console.log('TradeBank Value:', fxBreakReason.bankValue);
   console.log('Client Value:', fxBreakReason.clientValue);
   
   // Test multiple generations to ensure variety
   console.log('\n--- Multiple Generations Test ---');
   for (let i = 0; i < 5; i++) {
     const reason = generateBreakReason(sampleEquityTrade);
-    console.log(`Generation ${i + 1}: ${reason.field} - Barclays: ${reason.barclaysValue} | Client: ${reason.clientValue}`);
+    console.log(`Generation ${i + 1}: ${reason.field} - TradeBank: ${reason.bankValue} | Client: ${reason.clientValue}`);
   }
   
   console.log('\nBreak Reason Generator Test Complete!');

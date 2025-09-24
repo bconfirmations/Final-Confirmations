@@ -75,11 +75,11 @@ const BreakDetailsModal: React.FC<BreakDetailsModalProps> = ({ trade, onClose })
   const getBreakReasonDisplay = () => {
     if (!breakReason) return null;
     
-    // Format: "Trade Date: Barclays 1/24/2024 | Client 1/24/2024X"
-    const barclaysValue = breakReason.barclaysValue || '1/24/2024';
+    // Format: "Trade Date: TradeBank 1/24/2024 | Client 1/24/2024X"
+    const tradebankValue = breakReason.bankValue || '1/24/2024';
     const clientValue = breakReason.clientValue || '1/24/2024X';
     
-    return `Trade Date: Barclays ${barclaysValue} | Client ${clientValue}`;
+    return `Trade Date: TradeBank ${tradebankValue} | Client ${clientValue}`;
   };
 
   return (

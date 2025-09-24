@@ -21,7 +21,7 @@ export const generateTradePDF = (trade: EquityTrade | FXTrade): void => {
     </head>
     <body>
       <div class="header">
-        <h1>Barclays Confirmation Department</h1>
+        <h1>TradeBank Confirmation Department</h1>
         <h2>Trade Confirmation</h2>
       </div>
       <div class="content">

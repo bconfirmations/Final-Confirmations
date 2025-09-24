@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Download, Calendar, Building, DollarSign, FileText, AlertCircle } from 'lucide-react';
 import { EquityTrade, FXTrade } from '../../types/trade';
 import { generateTradePDF } from '../../utils/pdfGenerator';
-import BarclaysLetterModal from './BarclaysLetterModal';
+import BankLetterModal from './BankLetterModal';
 import ClientLetterModal from './ClientLetterModal';
 import BreakDetailsModal from './BreakDetailsModal';
 
@@ -12,7 +12,7 @@ interface TradeDetailsModalProps {
 }
 
 const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ trade, onClose }) => {
-  const [showBarclaysLetter, setShowBarclaysLetter] = useState(false);
+  const [showBankLetter, setShowBankLetter] = useState(false);
   const [showClientLetter, setShowClientLetter] = useState(false);
   const [showBreakDetails, setShowBreakDetails] = useState(false);
   const isEquityTrade = 'quantity' in trade;
@@ -51,11 +51,11 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ trade, onClose })
             {/* Action Buttons */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <button
-                onClick={() => setShowBarclaysLetter(true)}
+                onClick={() => setShowBankLetter(true)}
                 className="flex items-center justify-center space-x-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
               >
                 <FileText className="w-5 h-5" />
-                <span>Open Barclays Letter</span>
+                <span>Open Bank Letter</span>
               </button>
               
               <button
@@ -275,10 +275,10 @@ const TradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ trade, onClose })
       </div>
 
       {/* Modals */}
-      {showBarclaysLetter && (
-        <BarclaysLetterModal
+      {showBankLetter && (
+        <BankLetterModal
           trade={trade}
-          onClose={() => setShowBarclaysLetter(false)}
+          onClose={() => setShowBankLetter(false)}
         />
       )}
 

@@ -2,7 +2,7 @@ import { EquityTrade, FXTrade } from '../types/trade';
 
 export interface BreakReason {
   field: string;
-  barclaysValue: string;
+  bankValue: string;
   clientValue: string;
 }
 
@@ -205,7 +205,7 @@ export const generateBreakReason = (trade: EquityTrade | FXTrade): BreakReason =
   
   return {
     field: randomField,
-    barclaysValue: originalValue,
+    bankValue: originalValue,
     clientValue: finalMismatchedValue
   };
 }; 

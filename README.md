@@ -1,4 +1,4 @@
-# Barclays Trade Confirmations
+# TradeBank Trade Confirmations
 
 A React-based application for managing and viewing trade confirmations with Firebase integration.
 

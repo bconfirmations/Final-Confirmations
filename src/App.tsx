@@ -4,6 +4,7 @@ import TabNavigation from './components/Layout/TabNavigation';
 import TradeConfirmationsTab from './components/TradeConfirmations/TradeConfirmationsTab';
 import WorkflowManagementTab from './components/WorkflowManagement/WorkflowManagementTab';
 import { useTradeData } from './hooks/useTradeData';
+import { isFirebaseConfigured } from './config/firebase';
 import { Loader2, AlertCircle } from 'lucide-react';
 
 
@@ -53,7 +54,7 @@ function App() {
           <TradeConfirmationsTab 
             equityTrades={equityTrades} 
             fxTrades={fxTrades}
-            useFirebase={true}
+            useFirebase={isFirebaseConfigured()}
           />
         ) : (
           <WorkflowManagementTab />

@@ -33,13 +33,13 @@ const ClientLetterModal: React.FC<ClientLetterModalProps> = ({ trade, onClose })
       <body>
         <div class="content">
           <div class="header">
-            <div class="logo">BARCLAYS</div>
+            <div class="logo">TRADEBANK</div>
             <p style="margin: 0; color: #666;">Trade Confirmation Department</p>
           </div>
           
           <div class="section">
             <h2 style="color: #1e40af;">Client Document</h2>
-            <p><strong>Issued by:</strong> Barclays</p>
+            <p><strong>Issued by:</strong> TradeBank</p>
             <p><strong>Trade Confirmation Department</strong></p>
             <br>
             <p>This document provides formal confirmation of the trade executed on your behalf, with detailed information as below.</p>
@@ -218,7 +218,7 @@ const ClientLetterModal: React.FC<ClientLetterModalProps> = ({ trade, onClose })
           <div className="text-center mb-8 border-b-2 border-blue-600 pb-6">
             <div className="flex items-center justify-center space-x-2 mb-4">
               <Building className="w-8 h-8 text-blue-600" />
-              <h1 className="text-4xl font-bold text-blue-900">BARCLAYS</h1>
+              <h1 className="text-4xl font-bold text-blue-900">TRADEBANK</h1>
             </div>
             <p className="text-gray-600 text-lg">Trade Confirmation Department</p>
           </div>
@@ -227,7 +227,7 @@ const ClientLetterModal: React.FC<ClientLetterModalProps> = ({ trade, onClose })
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-blue-900 mb-4">Client Document</h2>
             <div className="space-y-2 mb-6">
-              <p><strong>Issued by:</strong> Barclays</p>
+              <p><strong>Issued by:</strong> TradeBank</p>
               <p><strong>Trade Confirmation Department</strong></p>
             </div>
             <p className="text-gray-700 leading-relaxed">

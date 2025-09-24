@@ -1,5 +1,5 @@
 import { collection, getDocs, query, orderBy, where, DocumentData } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { db, isFirebaseConfigured } from '../config/firebase';
 import { EquityTrade, FXTrade } from '../types/trade';
 
 export interface UnifiedTradeData extends DocumentData {
@@ -61,6 +61,11 @@ export class FirebaseService {
    * Fetch all trade data from the unified_data collection
    */
   static async fetchUnifiedTradeData(): Promise<UnifiedTradeData[]> {
+    if (!isFirebaseConfigured() || !db) {
+      console.warn('Firebase not configured, returning empty array');
+      return [];
+    }
+
     try {
       const collectionRef = collection(db, this.COLLECTION_NAME);
       const q = query(collectionRef, orderBy('TradeDate', 'desc'));
@@ -86,6 +91,11 @@ export class FirebaseService {
    * Fetch only FX trades from the unified_data collection
    */
   static async fetchFXTradesOnly(): Promise<UnifiedTradeData[]> {
+    if (!isFirebaseConfigured() || !db) {
+      console.warn('Firebase not configured, returning empty array');
+      return [];
+    }
+
     try {
       const collectionRef = collection(db, this.COLLECTION_NAME);
       const q = query(collectionRef, orderBy('TradeDate', 'desc'));
@@ -127,6 +137,11 @@ export class FirebaseService {
     counterparty?: string;
     tradeDate?: string;
   }): Promise<UnifiedTradeData[]> {
+    if (!isFirebaseConfigured() || !db) {
+      console.warn('Firebase not configured, returning empty array');
+      return [];
+    }
+
     try {
       const collectionRef = collection(db, this.COLLECTION_NAME);
       let q = query(collectionRef, orderBy('TradeDate', 'desc'));

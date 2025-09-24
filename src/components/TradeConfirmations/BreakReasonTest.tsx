@@ -75,7 +75,7 @@ const BreakReasonTest: React.FC = () => {
             <h3 className="font-medium text-red-900 mb-2">Generated Break Reason:</h3>
             <div className="text-sm text-red-700">
               <p><strong>{equityBreakReason.field}:</strong></p>
-              <p>Barclays - {equityBreakReason.barclaysValue}</p>
+              <p>TradeBank - {equityBreakReason.bankValue}</p>
               <p>Client - {equityBreakReason.clientValue}</p>
             </div>
           </div>
@@ -102,7 +102,7 @@ const BreakReasonTest: React.FC = () => {
             <h3 className="font-medium text-red-900 mb-2">Generated Break Reason:</h3>
             <div className="text-sm text-red-700">
               <p><strong>{fxBreakReason.field}:</strong></p>
-              <p>Barclays - {fxBreakReason.barclaysValue}</p>
+              <p>TradeBank - {fxBreakReason.bankValue}</p>
               <p>Client - {fxBreakReason.clientValue}</p>
             </div>
           </div>
@@ -121,7 +121,7 @@ const BreakReasonTest: React.FC = () => {
         <ul className="text-sm text-gray-700 space-y-1">
           <li>• Click "Regenerate" buttons to see different break reasons</li>
           <li>• Each trade will have 1 random field mismatch</li>
-          <li>• The format follows: "Field: Barclays - [value] | Client - [value]"</li>
+          <li>• The format follows: "Field: TradeBank - [value] | Client - [value]"</li>
           <li>• Available fields: Trade Date, Notional, Currency Pair, Maturity Date, Settlement Date, Counterparty, Product Type</li>
         </ul>
       </div>

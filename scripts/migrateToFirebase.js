@@ -110,7 +110,7 @@ const sampleUnifiedData = [
     tradeId: "EQ003",
     tradeType: "equity",
     tradeDate: "2024-01-17",
-    counterparty: "Barclays",
+    counterparty: "TradeBank",
     status: "Failed",
     tradeValue: 25000,
     currency: "USD",

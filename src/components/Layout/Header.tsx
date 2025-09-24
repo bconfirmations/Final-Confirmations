@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         <div className="flex items-center space-x-3">
           <Building2 className="w-8 h-8" />
           <div>
-            <h1 className="text-2xl font-bold">Barclays</h1>
+            <h1 className="text-2xl font-bold">TradeBank</h1>
             <p className="text-white text-sm opacity-90">Confirmation Department</p>
           </div>
         </div>
